@@ -17,14 +17,13 @@ const HomeRoute = (props) => {
       newFavorites.push(id);
     } else (newFavorites.splice(index, 1));
 
-    console.log('Clicked: ' + id + ' newFavorites ' + newFavorites);
     setFavorites(newFavorites);
   };
 
   return (
     <div className="home-route">
       <TopNavigation favorites={favorites}/>
-      <PhotoList favorites={favorites} setModal={props.setModal} toggleFavorite={toggleFavorite}  />
+      <PhotoList favorites={favorites} photos={props.photos} setModal={props.setModal} toggleFavorite={toggleFavorite}  />
     </div>
   );
 };
