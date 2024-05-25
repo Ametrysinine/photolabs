@@ -5,10 +5,12 @@ import PhotoList from "./PhotoList";
 import TopNavigation from "./TopNavigationBar";
 
 const HomeRoute = () => {
-  return (<div className="home-route">
-    <TopNavigation />
+  return (
+  <div className="home-route">
+    <TopNavigation/>
     <PhotoList/>
-  </div>);
+  </div>
+  );
 };
 
 export default HomeRoute;
