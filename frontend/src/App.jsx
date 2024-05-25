@@ -26,7 +26,6 @@ const App = () => {
     } else (newFavorites.splice(index, 1));
 
     setFavorites(newFavorites);
-    console.log(newFavorites);
   };
 
   return (

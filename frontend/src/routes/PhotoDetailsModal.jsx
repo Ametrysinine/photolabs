@@ -5,6 +5,7 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import photos from "mocks/photos";
 import PhotoListItem from 'components/PhotoListItem';
 import PhotoList from 'components/PhotoList';
+import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = (props) => {
   const modalPhoto = props.modal;
@@ -16,6 +17,11 @@ const PhotoDetailsModal = (props) => {
       </button>
 
       <div className="photo-details-modal__top">
+        <div className="photo-details-modal__favButton">
+          <PhotoFavButton id={modalPhoto.id} favorites={props.favorites} toggleFavorite={props.toggleFavorite}/>
+        </div>
+          
+        
         <img className="photo-details-modal__image" src={modalPhoto.urls.full} />
           <div className="photo-details-modal__photographer-details">
             <img className="photo-details-modal__photographer-profile" src={modalPhoto.user.profile} />

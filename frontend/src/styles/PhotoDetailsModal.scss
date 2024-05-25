@@ -17,7 +17,12 @@
   align-items:center;
   margin-top:8px;
 }
-
+.photo-details-modal__favButton {
+  display:flex;
+  align-self: flex-start;
+  position: relative;
+  left: 24px;
+}
 .photo-details-modal__close-button {
   background-color: white;
   border: none;
