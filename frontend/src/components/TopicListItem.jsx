@@ -11,7 +11,7 @@ const sampleDataForTopicListItem = {
 const TopicListItem = (props) => {
   const topic = props.data;
   return (
-    <div key={topic.id} className={"topic-list--item"}>
+    <div className="topic-list--item">
       <a>{topic.title}</a>
     </div>
   );
