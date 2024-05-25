@@ -5,6 +5,7 @@ import PhotoList from 'components/PhotoList';
 import './App.scss';
 import TopicList from 'components/TopicList';
 import TopNavigation from 'components/TopNavigationBar';
+import HomeRoute from 'components/HomeRoute';
 
 const sampleDataForPhotoListItem = {
   id: "1",
@@ -21,7 +22,7 @@ const sampleDataForPhotoListItem = {
 const App = () => {
   return (
     <div className="App">
-      <TopNavigation/>
+      <HomeRoute/>
     </div>
   );
 };

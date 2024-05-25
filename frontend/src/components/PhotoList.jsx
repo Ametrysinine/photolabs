@@ -56,7 +56,7 @@ const sampleDataForPhotoList = [
   },
 ];
 
-const PhotoList = (props) => {
+const PhotoList = () => {
 
   return (
     <ul className="photo-list">
