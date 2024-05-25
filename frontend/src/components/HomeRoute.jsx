@@ -5,7 +5,7 @@ import PhotoList from "./PhotoList";
 import TopNavigation from "./TopNavigationBar";
 
 const HomeRoute = () => {
-  const [favorites, setFavorites] = useState(['value0']);
+  const [favorites, setFavorites] = useState([]);
 
   const toggleFavorite = function(id) {
     const newFavorites = [...favorites];
@@ -23,7 +23,7 @@ const HomeRoute = () => {
 
   return (
     <div className="home-route">
-      <TopNavigation />
+      <TopNavigation favorites={favorites}/>
       <PhotoList favorites={favorites} toggleFavorite={toggleFavorite}  />
     </div>
   );
