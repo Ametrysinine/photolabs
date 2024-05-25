@@ -5,14 +5,18 @@ import PhotoList from "./PhotoList";
 import TopNavigation from "./TopNavigationBar";
 
 const HomeRoute = () => {
-  const [favorites, setFavorites] = useState({keys:'values'});
+  const [favorites, setFavorites] = useState(['value0']);
 
   const toggleFavorite = function(id) {
-    const newFavorites = {...favorites};
+    const newFavorites = [...favorites];
+    const index = newFavorites.indexOf(id);
 
-    newFavorites[id] = !newFavorites[id];
+    // Add or remove number from favorites array
+    if (index === -1) {
+      newFavorites.push(id);
+    } else (newFavorites.splice(index, 1));
 
-    console.log('Clicked: ' + id + ' newFavorites ' + Object.keys(newFavorites) + ' ' + Object.values(newFavorites));
+    console.log('Clicked: ' + id + ' newFavorites ' + newFavorites);
     setFavorites(newFavorites);
   };
 
