@@ -14,10 +14,25 @@ const App = () => {
   // Modal state: current image in modal view, false if no modal
   const [modal, setModal] = useState(false);
 
+  const [favorites, setFavorites] = useState([]);
+
+  const toggleFavorite = function(id) {
+    const newFavorites = [...favorites];
+    const index = newFavorites.indexOf(id);
+
+    // Add or remove number from favorites array
+    if (index === -1) {
+      newFavorites.push(id);
+    } else (newFavorites.splice(index, 1));
+
+    setFavorites(newFavorites);
+    console.log(newFavorites);
+  };
+
   return (
     <div className="App">
-      <HomeRoute photos={photos} setModal={setModal}/>
-      {modal && <PhotoDetailsModal modal={modal} setModal={setModal}/>}
+      <HomeRoute photos={photos} favorites={favorites} toggleFavorite={toggleFavorite} setModal={setModal}/>
+      {modal && <PhotoDetailsModal favorites={favorites} toggleFavorite={toggleFavorite} modal={modal} setModal={setModal}/>}
     </div>
   );
 };
