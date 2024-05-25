@@ -1,15 +1,14 @@
 import React from "react";
 
 import "../styles/PhotoListItem.scss";
-import photos from "mocks/photos";
-
-
+import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
   /* Insert React */
   const photo = props.data;
   return (
     <div key={photo.id} className="photo-list__item">
+          <PhotoFavButton/>
       <img className="photo-list__image" src={photo.urls.regular} />
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={photo.user.profile} />
