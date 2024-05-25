@@ -7,7 +7,8 @@ const PhotoList = (props) => {
 
   return (
     <ul className="photo-list">
-      {photos.map(photo => <li key={photo.id}><PhotoListItem favorites={props.favorites} toggleFavorite={props.toggleFavorite} photo={photo}/></li>)}
+      {photos.map(photo => <li key={photo.id}><PhotoListItem favorites={props.favorites} setModal={props.setModal}
+      toggleFavorite={props.toggleFavorite} photo={photo}/></li>)}
     </ul>
   );
 };

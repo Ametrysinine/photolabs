@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "../styles/HomeRoute.scss";
 import PhotoList from "../components/PhotoList";
 import TopNavigation from "../components/TopNavigationBar";
+import PhotoDetailsModal from "./PhotoDetailsModal";
 
 const HomeRoute = () => {
   const [favorites, setFavorites] = useState([]);
@@ -20,11 +21,13 @@ const HomeRoute = () => {
     setFavorites(newFavorites);
   };
 
+  const [modal, setModal] = useState(false);
 
   return (
     <div className="home-route">
       <TopNavigation favorites={favorites}/>
-      <PhotoList favorites={favorites} toggleFavorite={toggleFavorite}  />
+      <PhotoList favorites={favorites} setModal={setModal} toggleFavorite={toggleFavorite}  />
+      {modal && <PhotoDetailsModal setModal={setModal}/>}
     </div>
   );
 };
