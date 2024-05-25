@@ -25,7 +25,6 @@ const HomeRoute = (props) => {
     <div className="home-route">
       <TopNavigation favorites={favorites}/>
       <PhotoList favorites={favorites} setModal={props.setModal} toggleFavorite={toggleFavorite}  />
-
     </div>
   );
 };
