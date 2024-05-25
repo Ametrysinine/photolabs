@@ -1,6 +1,7 @@
 import React from 'react';
 
 import PhotoListItem from './components/PhotoListItem';
+import PhotoList from 'components/PhotoList';
 import './App.scss';
 
 const sampleDataForPhotoListItem = {
@@ -13,17 +14,12 @@ const sampleDataForPhotoListItem = {
   username: "Joe Example",
   profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
 };
+
 // Note: Rendering a single component to build components in isolation
 const App = () => {
   return (
     <div className="App">
-      <PhotoListItem 
-      id={sampleDataForPhotoListItem.id} 
-      location={sampleDataForPhotoListItem.location} 
-      imageSource={sampleDataForPhotoListItem.imageSource}
-      username={sampleDataForPhotoListItem.username}
-      profile={sampleDataForPhotoListItem.profile}
-      />
+      <PhotoList/>
     </div>
   );
 };
