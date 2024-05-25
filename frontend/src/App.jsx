@@ -5,7 +5,7 @@ import PhotoList from 'components/PhotoList';
 import './App.scss';
 import TopicList from 'components/TopicList';
 import TopNavigation from 'components/TopNavigationBar';
-import HomeRoute from 'components/HomeRoute';
+import HomeRoute from 'routes/HomeRoute';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
