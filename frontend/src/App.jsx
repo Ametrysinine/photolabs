@@ -8,38 +8,11 @@ import TopNavigation from 'components/TopNavigationBar';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 import photos from "mocks/photos";
-
+import useApplicationData from 'hooks/useApplicationData';
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const [state, setState] = useState({
-      // Modal state: current image in modal view, false if no modal open
-    modal: false,
-    favorites: []
-  })
-
-  const setModal = function(val) {
-    const newState = {...state};
-    newState.modal = val;
-    setState(newState);
-  }
-
-
-
-
-  const toggleFavorite = function(id) {
-    const newState = {...state}
-    const newFavorites = newState.favorites;
-
-    const index = newFavorites.indexOf(id);
-
-    // Add or remove number from favorites array
-    if (index === -1) {
-      newFavorites.push(id);
-    } else (newFavorites.splice(index, 1));
- 
-    setState(newState);
-  };
-
+  const {state, toggleFavorite, setModal} = useApplicationData();
+  console.log(state);
   return (
     <div className="App">
       <HomeRoute photos={photos} favorites={state.favorites} toggleFavorite={toggleFavorite} setModal={setModal}/>

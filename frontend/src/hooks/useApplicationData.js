@@ -1,31 +1,33 @@
 import React, { useState } from "react";
 
 const useApplicationData = function() {
-  // Modal state: current image in modal view, false if no modal
-  const [modal, setModal] = useState(false);
+  const [state, setState] = useState({
+    // Modal state: current image in modal view, false if no modal open
+    modal: false,
+    favorites: []
+  });
 
-  const [favorites, setFavorites] = useState([]);
-  console.log('FAVORITES' + favorites);
-  
+  const setModal = function(val) {
+    const newState = { ...state };
+    newState.modal = val;
+    setState(newState);
+  };
+
   const toggleFavorite = function(id) {
-    const newFavorites = [...favorites];
+    const newState = { ...state };
+    const newFavorites = newState.favorites;
+
     const index = newFavorites.indexOf(id);
 
     // Add or remove number from favorites array
     if (index === -1) {
       newFavorites.push(id);
     } else (newFavorites.splice(index, 1));
-    setFavorites(newFavorites);
 
-    
+    setState(newState);
   };
 
-  return {
-    modal,
-    favorites,
-    toggleFavorite,
-    setModal
-  };
+  return {state, setModal, toggleFavorite};
 };
 
 export default useApplicationData;
