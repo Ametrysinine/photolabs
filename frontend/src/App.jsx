@@ -11,27 +11,39 @@ import photos from "mocks/photos";
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  // Modal state: current image in modal view, false if no modal
-  const [modal, setModal] = useState(false);
+  const [state, setState] = useState({
+      // Modal state: current image in modal view, false if no modal open
+    modal: false,
+    favorites: []
+  })
 
-  const [favorites, setFavorites] = useState([]);
+  const setModal = function(val) {
+    const newState = {...state};
+    newState.modal = val;
+    setState(newState);
+  }
+
+
+
 
   const toggleFavorite = function(id) {
-    const newFavorites = [...favorites];
+    const newState = {...state}
+    const newFavorites = newState.favorites;
+
     const index = newFavorites.indexOf(id);
 
     // Add or remove number from favorites array
     if (index === -1) {
       newFavorites.push(id);
     } else (newFavorites.splice(index, 1));
-
-    setFavorites(newFavorites);
+ 
+    setState(newState);
   };
 
   return (
     <div className="App">
-      <HomeRoute photos={photos} favorites={favorites} toggleFavorite={toggleFavorite} setModal={setModal}/>
-      {modal && <PhotoDetailsModal favorites={favorites} toggleFavorite={toggleFavorite} modal={modal} setModal={setModal}/>}
+      <HomeRoute photos={photos} favorites={state.favorites} toggleFavorite={toggleFavorite} setModal={setModal}/>
+      {state.modal && <PhotoDetailsModal favorites={state.favorites} toggleFavorite={toggleFavorite} modal={state.modal} setModal={setModal}/>}
     </div>
   );
 };
