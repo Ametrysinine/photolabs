@@ -2,14 +2,16 @@ import React from "react";
 
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
+import useApplicationData from "hooks/useApplicationData";
 
 const PhotoListItem = (props) => {
   const photo = props.photo;
+  const {setModal} = useApplicationData();
 
   return (
     <div className="photo-list__item">
-        <PhotoFavButton id={photo.id} favorites={props.favorites} toggleFavorite={props.toggleFavorite}/>
-      <img className="photo-list__image" src={photo.urls.regular} onClick={() => props.setModal(photo)}/>
+        <PhotoFavButton id={photo.id} favorites={props.favorites}/>
+      <img className="photo-list__image" src={photo.urls.regular} onClick={() => setModal(photo)}/>
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={photo.user.profile} />
         <div className="photo-list__user-info">
