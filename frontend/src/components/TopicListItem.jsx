@@ -5,7 +5,7 @@ import "../styles/TopicListItem.scss";
 const TopicListItem = (props) => {
   const topic = props.data;
   return (
-    <div>
+    <div onClick={() => props.setTopic(props.id)}>
       <a>{topic.title}</a>
     </div>
   );

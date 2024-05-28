@@ -7,21 +7,27 @@ import useApplicationData from 'hooks/useApplicationData';
 
 // Note: Rendering a single component to build components in isolation
 const App = () => {
-  const {state: {favorites, modal, photoData, topicData}, setModal, closeModal, toggleFavorite, setPhotoData, setTopicData} = useApplicationData();
+  const {state: {favorites, modal, photoData, topicData, topic}, setModal, closeModal, toggleFavorite, setPhotoData, setTopicData, setTopic} = useApplicationData();
   useEffect(() => {
-    fetch(`/api/photos/`)
+    // If topic !== null, select only photos related to topic
+    fetch(topic ? `/api/topics/photos/${topic}` : `/api/photos/`)
     .then(response => response.json())
     .then(data => setPhotoData(data));
+  }, [topic]);
 
+  useEffect(() => {
     fetch(`/api/topics/`)
     .then(response => response.json())
     .then(data => setTopicData(data));
   }, []);
 
 
+
+
+
   return (
     <div className="App">
-      <HomeRoute photos={photoData} topics={topicData} favorites={favorites} setModal={setModal} toggleFavorite={toggleFavorite}/>
+      <HomeRoute photos={photoData} topics={topicData} favorites={favorites} setModal={setModal} toggleFavorite={toggleFavorite} setTopic={setTopic}/>
       {modal && <PhotoDetailsModal favorites={favorites} modal={modal} closeModal={closeModal} toggleFavorite={toggleFavorite}/>}
     </div>
   );
