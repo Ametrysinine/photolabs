@@ -2,7 +2,9 @@ import { useReducer } from "react";
 export const ACTIONS = {
   SET_MODAL: 'SET_MODAL',
   CLOSE_MODAL: 'CLOSE_MODAL',
-  TOGGLE_FAVORITE: 'TOGGLE_FAVORITE'
+  TOGGLE_FAVORITE: 'TOGGLE_FAVORITE',
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA'
 }
 
 const useApplicationData = function() {
@@ -11,8 +13,7 @@ const useApplicationData = function() {
 
     switch (action.type) {
       case ACTIONS.SET_MODAL:
-        console.log('Setting modal: ' + action.value);
-        return { ...state, modal: action.value };
+        return { ...state, modal: action.payload };
 
       case ACTIONS.CLOSE_MODAL:
         console.log('Closing modal.');
@@ -20,25 +21,25 @@ const useApplicationData = function() {
 
       case ACTIONS.TOGGLE_FAVORITE:
         const newFavorites = [...state.favorites];
-        const index = newFavorites.indexOf(action.value);
+        const index = newFavorites.indexOf(action.payload);
 
         if (index === -1) {
-          newFavorites.push(action.value);          
-          
-          console.log('Pushing value ' + action.value + ' to favorites array');
-          console.log('Resulting array:' + newFavorites);
-
+          newFavorites.push(action.payload);          
         } else {
           newFavorites.splice(index, 1);
-
-          console.log('Removing value ' + action.value + ' from favorites array');
-          console.log('Resulting array:' + newFavorites);
         };
-        
 
         return { ...state, favorites: newFavorites };
+
+        case ACTIONS.SET_PHOTO_DATA:
+          const newPhoto = {...state}
+          return ({ ...newPhoto, photoData: action.payload });
+        
+        case ACTIONS.SET_TOPIC_DATA:
+          const newTopic = {...state}
+          return ({ ...newTopic, topicData: action.payload });
+  
       default:
-        console.log('Invalid action type: ' + action.type);
         return state;
     }
   };
@@ -46,16 +47,21 @@ const useApplicationData = function() {
   const [state, dispatch] = useReducer(reducer, {
     // Modal state: current image in modal view, false if no modal open
     modal: false,
-    favorites: [11, 12, 13]
+    favorites: [],
+    photoData: [],
+    topicData: []
   });
+  
 
-  const setModal = (photo) => dispatch({type: ACTIONS.SET_MODAL, value: photo})
+  const setModal = (photo) => dispatch({type: ACTIONS.SET_MODAL, payload: photo})
   const closeModal = () => dispatch({type: ACTIONS.CLOSE_MODAL})
-  const toggleFavorite = (id) => dispatch({type: ACTIONS.TOGGLE_FAVORITE, value: id})
+  const toggleFavorite = (id) => dispatch({type: ACTIONS.TOGGLE_FAVORITE, payload: id})
+  const setPhotoData = (fetchResult) => dispatch({type: ACTIONS.SET_PHOTO_DATA, payload: fetchResult})
+  const setTopicData = (fetchResult) => dispatch({type: ACTIONS.SET_TOPIC_DATA, payload: fetchResult})
 
 
 
-return { state, setModal, closeModal, toggleFavorite };
+return { state, setModal, closeModal, setPhotoData, setTopicData, toggleFavorite};
 };
 
 export default useApplicationData;
