@@ -54,17 +54,16 @@ const useApplicationData = function() {
     topic: null
   });
 
+  const stateFunctions = {
+    setModal: (photo) => dispatch({ type: ACTIONS.SET_MODAL, payload: photo }),
+    closeModal: () => dispatch({ type: ACTIONS.CLOSE_MODAL }),
+    toggleFavorite: (id) => dispatch({ type: ACTIONS.TOGGLE_FAVORITE, payload: id }),
+    setPhotoData: (fetchJson) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: fetchJson }),
+    setTopicData: (fetchJson) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: fetchJson }),
+    setTopic: (id) => dispatch({ type: ACTIONS.SET_TOPIC, payload: id})
+  }
 
-  const setModal = (photo) => dispatch({ type: ACTIONS.SET_MODAL, payload: photo });
-  const closeModal = () => dispatch({ type: ACTIONS.CLOSE_MODAL });
-  const toggleFavorite = (id) => dispatch({ type: ACTIONS.TOGGLE_FAVORITE, payload: id });
-  const setPhotoData = (fetchResult) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: fetchResult });
-  const setTopicData = (fetchResult) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: fetchResult });
-  const setTopic = (id) => dispatch({ type: ACTIONS.SET_TOPIC, payload: id});
-
-
-
-  return { state, setModal, closeModal, setPhotoData, setTopicData, toggleFavorite, setTopic };
+  return { state, stateFunctions };
 };
 
 export default useApplicationData;

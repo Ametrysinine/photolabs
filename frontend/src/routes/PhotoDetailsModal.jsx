@@ -13,13 +13,10 @@ const PhotoDetailsModal = (props) => {
       <button className="photo-details-modal__close-button" onClick={props.closeModal}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
-
       <div className="photo-details-modal__top">
         <div className="photo-details-modal__favButton">
           <PhotoFavButton id={modalPhoto.id} favorites={props.favorites} toggleFavorite={props.toggleFavorite}/>
         </div>
-          
-        
         <img className="photo-details-modal__image" src={modalPhoto.urls.full} />
           <div className="photo-details-modal__photographer-details">
             <img className="photo-details-modal__photographer-profile" src={modalPhoto.user.profile} />
@@ -30,9 +27,7 @@ const PhotoDetailsModal = (props) => {
               </div>
             </div>
           </div>
-
       </div>
-
       <div className="photo-details-modal__images">        
         <div>Similar Photos</div>
         <PhotoList photos={Object.values(modalPhoto.similar_photos)} favorites={props.favorites} toggleFavorite={props.toggleFavorite} />
