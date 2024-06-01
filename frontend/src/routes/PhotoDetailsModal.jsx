@@ -9,7 +9,7 @@ const PhotoDetailsModal = (props) => {
   const modalPhoto = props.modal;
 
   return (
-    <div className="photo-details-modal">
+    <div className={"photo-details-modal " + props.darkMode}>
       <button className="photo-details-modal__close-button" onClick={props.closeModal}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
